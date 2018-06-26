@@ -39,7 +39,7 @@ func Filter(condition *pb.FindRequest) ([]*pb.UserRequest, int32) {
 	var count int32
 	for i := 0; i < len(users); i++ {
 		if condition.GetStartage() < users[i].Age && condition.GetEndage() > users[i].Age &&
-			CheckDistance(condition.GetDistance(), condition.GetLatitude(), users[i].Latitude, condition.GetLongitude(), condition.GetDistance()) &&
+			CheckDistance(condition.GetDistance(), float64(condition.GetLatitude()), float64(users[i].Latitude), float64(condition.GetLongitude()), float64(users[i].Longitude)) &&
 			strings.Compare(condition.GetGender(), users[i].Gender) == 0 &&
 			strings.Compare(condition.GetReligion(), users[i].Religion) == 0 &&
 			strings.Compare(condition.GetNationality(), users[i].Nationality) == 0 {
