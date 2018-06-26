@@ -38,9 +38,11 @@ message FindRequest {
     int32 startage = 1;
     int32 endage = 2;
     string gender = 3;
-    double distance = 4;
-    string religion = 5;
-    string nationality = 6;
+    double latitude = 4;
+    double longitude = 5;
+    double distance = 6;
+    string religion = 7;
+    string nationality = 8;
 }
 
 message FindResponse {
