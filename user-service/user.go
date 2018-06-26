@@ -14,12 +14,14 @@ const (
 	port = ":50051"
 )
 
-// server is used to implement helloworld.GreeterServer.
 type server struct{}
 
-// SayHello implements helloworld.GreeterServer
 func (s *server) RegistUser(ctx context.Context, in *pb.UserRequest) (*pb.UserResponse, error) {
 	return &pb.UserResponse{Message: "Hello " + in.Name}, nil
+}
+
+func (s *server) FindUser(ctx context.Context, in *pb.FindRequest) (*pb.FindResponse, error) {
+	return &pb.FindResponse{Name: "Hello " + in.Religion}, nil
 }
 
 func main() {
@@ -29,7 +31,7 @@ func main() {
 	}
 	s := grpc.NewServer()
 	pb.RegisterBigServer(s, &server{})
-	// Register reflection service on gRPC server.
+
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

@@ -38,11 +38,8 @@ message FindRequest {
 }
 
 message FindResponse {
-    string name = 1;
-    int32 age = 2;
-    string gender = 3;
-    double latitude = 4;
-    double longitude = 5;
-    string religion = 6;
-    string nationality = 7;
+    repeated UserRequest result = 1;
+    int32 count = 2;
+    string code = 3;
+    string message = 4;
 }
