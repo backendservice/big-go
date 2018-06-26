@@ -6,8 +6,17 @@ option java_outer_classname = "user";
 package big;
 
 service Big {
+    rpc Hello (HelloRequest) returns (HelloResponse) {}
     rpc RegistUser (UserRequest) returns (UserResponse) {}
     rpc FindUser (FindRequest) returns (FindResponse) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string message = 1;
 }
 
 message UserRequest {
