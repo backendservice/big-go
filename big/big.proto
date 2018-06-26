@@ -35,8 +35,8 @@ message UserResponse {
 }
 
 message FindRequest {
-    int32 startage = 1;
-    int32 endage = 2;
+    int32 age = 1;
+    string ageType = 2;
     string gender = 3;
     float latitude = 4;
     float longitude = 5;
