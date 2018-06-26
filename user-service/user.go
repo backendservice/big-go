@@ -16,12 +16,16 @@ const (
 
 type server struct{}
 
+func (s *server) Hello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloResponse, error) {
+	return &pb.HelloResponse{Message: "Hello " + in.Name}, nil
+}
+
 func (s *server) RegistUser(ctx context.Context, in *pb.UserRequest) (*pb.UserResponse, error) {
 	return &pb.UserResponse{Message: "Hello " + in.Name}, nil
 }
 
 func (s *server) FindUser(ctx context.Context, in *pb.FindRequest) (*pb.FindResponse, error) {
-	return &pb.FindResponse{Name: "Hello " + in.Religion}, nil
+	return &pb.FindResponse{Message: "Hello " + in.Religion}, nil
 }
 
 func main() {
