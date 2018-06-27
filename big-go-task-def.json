@@ -1,0 +1,19 @@
+{
+    "family": "big-go",
+    "containerDefinitions": [
+        {
+            "name": "big-go",
+            "image": "388607719722.dkr.ecr.us-east-1.amazonaws.com/big-go",
+            "cpu": 1,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "containerPort": 50051,
+                    "hostPort": 50051
+                }
+            ],
+            "essential": true
+        }
+    ]
+}
+
