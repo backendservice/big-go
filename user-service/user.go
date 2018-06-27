@@ -26,12 +26,12 @@ func (s *server) Hello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRespo
 
 func (s *server) RegistUser(ctx context.Context, in *pb.UserRequest) (*pb.UserResponse, error) {
 	users = append(users, in)
-	return &pb.UserResponse{Message: "User (" + in.Name + ") register success"}, nil
+	return &pb.UserResponse{Message: "User (" + in.Name + ") register success", Code: 200}, nil
 }
 
 func (s *server) FindUser(ctx context.Context, in *pb.FindRequest) (*pb.FindResponse, error) {
 	filtereduser, count := Filter(in)
-	return &pb.FindResponse{Count: count, Result: filtereduser, Message: "Hello " + in.Religion}, nil
+	return &pb.FindResponse{Count: count, Result: filtereduser, Message: "Hello " + in.Religion, Code: 200}, nil
 }
 
 func Filter(condition *pb.FindRequest) ([]*pb.UserRequest, int32) {
