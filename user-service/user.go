@@ -38,13 +38,13 @@ func Filter(condition *pb.FindRequest) ([]*pb.UserRequest, int32) {
 	var tmpuser []*pb.UserRequest
 	var count int32
 	for i := 0; i < len(users); i++ {
-		if (strings.Compare(condition.GetAgeType(), "E") == 0 && condition.GetAge() == users[i].Age ||
+		if (strings.Compare(condition.GetAgeType(), "") == 0 || strings.Compare(condition.GetAgeType(), "E") == 0 && condition.GetAge() == users[i].Age ||
 			strings.Compare(condition.GetAgeType(), "U") == 0 && condition.GetAge() < users[i].Age ||
 			strings.Compare(condition.GetAgeType(), "D") == 0 && condition.GetAge() > users[i].Age) &&
-			CheckDistance(condition.GetDistance(), float64(condition.GetLatitude()), float64(users[i].Latitude), float64(condition.GetLongitude()), float64(users[i].Longitude)) &&
-			strings.Compare(condition.GetGender(), users[i].Gender) == 0 &&
-			strings.Compare(condition.GetReligion(), users[i].Religion) == 0 &&
-			strings.Compare(condition.GetNationality(), users[i].Nationality) == 0 {
+			(condition.GetDistance() == 0 || CheckDistance(condition.GetDistance(), float64(condition.GetLatitude()), float64(users[i].Latitude), float64(condition.GetLongitude()), float64(users[i].Longitude))) &&
+			(strings.Compare(condition.GetGender(), "") == 0 || strings.Compare(condition.GetGender(), users[i].Gender) == 0) &&
+			(strings.Compare(condition.GetReligion(), "") == 0 || strings.Compare(condition.GetReligion(), users[i].Religion) == 0) &&
+			(strings.Compare(condition.GetNationality(), "") == 0 || strings.Compare(condition.GetNationality(), users[i].Nationality) == 0) {
 			tmpuser = append(tmpuser, users[i])
 			count++
 		}
